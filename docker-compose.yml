@@ -1,0 +1,39 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15
+    container_name: ${DB_HOST}
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  api:
+    build: ./api
+    container_name: trivia_api
+    env_file:
+      - ./.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  app:
+    build: ./app
+    container_name: trivia_app
+    depends_on:
+      - api
+    stdin_open: true
+    tty: true
+    profiles:
+      - manual
+
+volumes:
+  postgres_data:
+    external: false
