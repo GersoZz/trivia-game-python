@@ -2,9 +2,16 @@
 
 All notable changes to this project will be documented in this file. We follow the [Semver](https://semver.org/) specification for versioning.
 
+## 0.3.0 (2025-04-13)
+
+### feat: add Question class and unit tests for answer validation (current)
+
+- Implemented the `Question` class to handle questions and answers
+- Added unit tests to validate the `is_correct` method
+
 ## 0.2.0 (2025-04-13)
 
-### feat: add initial configurations for applications (current)
+### feat: add initial configurations for applications (5512061)
 
 - Created .env.example for environment variables
 - Implemented Dockerfile for API and CLI application
