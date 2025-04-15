@@ -1,6 +1,11 @@
 from trivia import Question, Quiz
 
 def run_quiz():
+    print("🎉 ¡Bienvenido al juego de Trivia! 🎉")
+    print("🧠 Responde las siguientes preguntas seleccionando la letra de la opción correcta.")
+
+    quiz = Quiz()
+
     # Creamos las preguntas
     q1 = Question("¿Cuánto es 2 x 4?", ["A) 2", "B) 4", "C) 6", "D) 8"], "D")
     q2 = Question("¿Cuánto es 5 x 6?", ["A) 11", "B) 30", "C) 56", "D) 26"], "B")
@@ -27,27 +32,32 @@ def run_quiz():
     quiz.add_question(q10)
 
     # Iniciamos la trivia
-
-    while True:
+    while quiz.current_question_index < len(quiz.questions):
         question = quiz.get_next_question()
 
         if not question:
             break
 
-        print("\n" + question.description)
+        print(f"\n❓ Pregunta {quiz.current_question_index}: {question.description}")
+
         for option in question.options:
             print(option)
 
         # Capturamos y parseamos la respuesta
-        answer = input("Ingrese su respuesta: ").strip().upper()
+        answer = input("✏️ Ingrese su respuesta: ").strip().upper()
 
         if quiz.answer_question(question, answer):
-            print("¡Correcto!")
+            print("✅ ¡Correcto! 🎉")
         else:
-            print("¡Incorrecto!")
+            print("❌ ¡Incorrecto! 😢")
+
+    print("\n🏁 Juego terminado.")
+    print(f"📋 Preguntas contestadas: {quiz.current_question_index}")
+    print(f"✔️ Respuestas correctas: {quiz.correct_answers}")
+    print(f"❌ Respuestas incorrectas: {quiz.incorrect_answers}")
 
     total = quiz.correct_answers + quiz.incorrect_answers
-    print(f"\nTu puntaje es {quiz.correct_answers}/{total}")
+    print(f"\n🏆 Tu puntaje es: {quiz.correct_answers}/{total} 🎯")
 
 if __name__ == "__main__":
     run_quiz()
