@@ -13,8 +13,6 @@ def run_quiz():
     quiz.add_question(q3)
 
     # Iniciamos la trivia
-    score = 0
-    total = len(quiz.questions)
 
     while True:
         question = quiz.get_next_question()
@@ -29,13 +27,13 @@ def run_quiz():
         # Capturamos y parseamos la respuesta
         answer = input("Ingrese su respuesta: ").strip().upper()
 
-        if question.is_correct(answer):
+        if quiz.answer_question(question, answer):
             print("¡Correcto!")
-            score += 1
         else:
             print("¡Incorrecto!")
 
-    print(f"\nTu puntaje es {score}/{total}")
+    total = quiz.correct_answers + quiz.incorrect_answers
+    print(f"\nTu puntaje es {quiz.correct_answers}/{total}")
 
 if __name__ == "__main__":
     run_quiz()
