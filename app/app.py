@@ -5,31 +5,7 @@ def run_quiz():
     print("🧠 Responde las siguientes preguntas seleccionando la letra de la opción correcta.")
 
     quiz = Quiz()
-
-    # Creamos las preguntas
-    q1 = Question("¿Cuánto es 2 x 4?", ["A) 2", "B) 4", "C) 6", "D) 8"], "D")
-    q2 = Question("¿Cuánto es 5 x 6?", ["A) 11", "B) 30", "C) 56", "D) 26"], "B")
-    q3 = Question("¿Cuánto es 3 x 3?", ["A) 9", "B) 2", "C) 4", "D) 1"], "A")
-    q4 = Question("¿Cuánto es 2 x 2?", ["A) 2", "B) 4", "C) 6", "D) 8"], "B")
-    q5 = Question("¿Cuánto es 5 x 5?", ["A) 11", "B) 30", "C) 56", "D) 25"], "D")
-    q6 = Question("¿Cuánto es 3 x 4?", ["A) 9", "B) 2", "C) 12", "D) 1"], "C")
-    q7 = Question("¿Cuánto es 2 x 3?", ["A) 2", "B) 4", "C) 6", "D) 8"], "C")
-    q8 = Question("¿Cuánto es 5 x 4?", ["A) 11", "B) 20", "C) 56", "D) 25"], "B")
-    q9 = Question("¿Cuánto es 3 x 5?", ["A) 9", "B) 2", "C) 15", "D) 1"], "C")
-    q10 = Question("¿Cuánto es 2 x 5?", ["A) 2", "B) 4", "C) 6", "D) 10"], "D")
-
-    # Creamos la trivia
-    quiz = Quiz()
-    quiz.add_question(q1)
-    quiz.add_question(q2)
-    quiz.add_question(q3)
-    quiz.add_question(q4)
-    quiz.add_question(q5)
-    quiz.add_question(q6)
-    quiz.add_question(q7)
-    quiz.add_question(q8)
-    quiz.add_question(q9)
-    quiz.add_question(q10)
+    quiz.fetch_questions()
 
     # Iniciamos la trivia
     while quiz.current_question_index < len(quiz.questions):

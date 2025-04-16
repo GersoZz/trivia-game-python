@@ -7,6 +7,9 @@ WORKDIR /app
 # Copiamos los archivos a la carpeta de trabajo
 COPY . .
 
+# Instalamos curl para el healthcheck
+RUN apk add --no-cache curl
+
 # Instalamos las dependencias necesarias
 RUN pip install -r requirements.txt
 
