@@ -8,7 +8,7 @@ on:
       - 'feature/**'
 
 jobs:
-  build:
+  tests:
     runs-on: ubuntu-latest
     timeout-minutes: 10
 
@@ -43,3 +43,9 @@ jobs:
       - name: Run tests inside the container
         run: |
           docker compose exec api pytest
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}  
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
